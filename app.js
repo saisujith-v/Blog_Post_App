@@ -71,20 +71,6 @@ app.post("/compose", function(req, res){
 
 });
 
-app.get("/delete",function(req,res){
-  res.render("delete");
-});
-
-app.post("/delete", function(req, res){
-  Post.deleteOne({title:req.body.postTitle},function(err){
-    if(err)
-    {
-      console.log(err);
-    }
-  });
-  res.redirect("/");
-
-});
 
 
 app.get("/posts/:postId", function(req, res){
