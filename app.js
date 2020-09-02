@@ -29,6 +29,10 @@ app.use(express.static("public"));
 
 app.get("/", function(req, res){
   Post.find({}, function(err, posts){
+    if(err)
+    {
+      console.log(err);
+    }
     res.render("home", {
       startingContent: homeStartingContent,
       posts: posts
@@ -67,6 +71,22 @@ app.post("/compose", function(req, res){
 
 });
 
+app.get("/delete",function(req,res){
+  res.render("delete");
+});
+
+app.post("/delete", function(req, res){
+  Post.deleteOne({title:req.body.postTitle},function(err){
+    if(err)
+    {
+      console.log(err);
+    }
+  });
+  res.redirect("/");
+
+});
+
+
 app.get("/posts/:postId", function(req, res){
   const requestedId = req.params.postId;
   Post.findOne({_id: requestedId}, function(err, post){
@@ -84,11 +104,14 @@ app.get("/posts/:postId", function(req, res){
 
 });
 
-const port = process.env.PORT || 3000;
-if(port==null || port=="")
+let port = process.env.PORT;
+
+if(port==null || port==" ")
 {
   port=3000;
 }
+
+
 app.listen(port,function(){
   console.log("Server has started");
 });
