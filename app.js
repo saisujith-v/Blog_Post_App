@@ -85,4 +85,10 @@ app.get("/posts/:postId", function(req, res){
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port);
+if(port==null || port=="")
+{
+  port=3000;
+}
+app.listen(port,function(){
+  console.log("Server has started");
+});
