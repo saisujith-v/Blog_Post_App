@@ -14,7 +14,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://sujith_5438:test123@cluster0.0fosk.mongodb.net/blogDB?retryWrites=true&w=majority", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://sujith_5438:test123@cluster0.0fosk.mongodb.net/BlogDB?retryWrites=true&w=majority", {useNewUrlParser: true});
 
 const postSchema = {
   title: String,
